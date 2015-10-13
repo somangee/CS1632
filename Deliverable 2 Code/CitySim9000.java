@@ -13,10 +13,12 @@ public class CitySim9000{
 		
 		while(drivers < 5){
 			Driver d = new Driver(Integer.parseInt(args[0]));
+			d.firstLocation();
 			do{
 				System.out.print("Driver "+drivers+" heading from " +locationName[d.returnLocation()]+ " to ");
 				//Change location.
 				d.newLocation();
+				d.streetDriven();
 				System.out.print(locationName[d.returnLocation()]+" via "+d.returnStreet()+"\n");
 			}while(d.returnLocation() != 4);
 			System.out.print("Driver "+drivers+" has left the city!\n-----\n");
@@ -26,7 +28,7 @@ public class CitySim9000{
 	}
 
 	//Is used to check if value is an int by using Scanner and checking if the element is a valid digit for the radix
-	public static boolean isInteger(String s, int radix){
+	private static boolean isInteger(String s, int radix){
 		Scanner scan = new Scanner(s.trim());
     	if(!scan.hasNextInt(radix)) return false;
     	scan.nextInt(radix);
